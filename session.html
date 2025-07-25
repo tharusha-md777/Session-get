@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <title>THARUSHA MD SESSION HUB</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary-color: aqua;
+            --secondary-color: #1a1a2e;
+            --accent-color: #4ecdc4;
+            --text-color: #ffffff;
+            --shadow-color: rgba(0,0,0,0.819);
+        }
+
+        body {
+            background: var(--secondary-color);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Dynamic Wave Background */
+        .wave-bg {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            /*background: linear-gradient(135deg, #ff6b6b, #ff8e53, #f1c40f, #2ecc71, #3498db, #9b59b6,
+        #e74c3c, #1abc9c, #f39c12, #8e44ad, #c0392b, #2980b9/*rgb(31,5,106), var(--accent-color), var(--secondary-color)*/);*/
+            background: linear-gradient(135deg, #1e1e2f, #2a2a3b);
+            background-size: 200%;
+            animation: waveFlow 10s ease-in-out infinite;
+            z-index: 0;
+            opacity: 0.9;
+        }
+
+        @keyframes waveFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Hexagon Overlay */
+        .hex-overlay {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><polygon points="40,10 70,25 70,55 40,70 10,55 10,25" fill="none" stroke="%23ff6f61" stroke-width="1" opacity="0.2"/></svg>') repeat;
+            background-size: 80px 80px;
+            animation: hexShift 20s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes hexShift {
+            0% { background-position: 0 0; }
+            100% { background-position: 80px 80px; }
+        }
+
+        /* Light Mode */
+        body.light-mode {
+            background: #f5f6fa;
+        }
+
+        body.light-mode .wave-bg {
+            background: linear-gradient(135deg, #ff9a8b, #4ecdc4, #e0e0e0);
+            opacity: 0.8;
+        }
+
+        body.light-mode .hex-overlay {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><polygon points="40,10 70,25 70,55 40,70 10,55 10,25" fill="none" stroke="%234ecdc4" stroke-width="1" opacity="0.3"/></svg>') repeat;
+        }
+
+        /* Main Container */
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--primary-color);
+            border-radius: 20px;
+            padding: 30px;
+            width: 400px;
+            position: relative;
+            z-index: 2;
+            animation: bounce 4s ease-in-out infinite /*fadeIn 1.5s ease-in*/;
+            box-shadow: 0 0 30px var(--shadow-color);
+            backdrop-filter: blur(60px);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(0.94); }
+            50% { transform: scale(1); }
+        }
+        @keyframes textbounce {
+          0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        body.light-mode .container {
+            background: rgba(245, 246, 250, 0.9);
+            border: 3px solid var(--accent-color);
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.5);
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            animation:animation: pulseGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            from { text-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--primary-color); }
+            to { text-shadow: 0 0 20px var(--accent-color), 0 0 40px var(--primary-color); }
+        }
+
+        body.light-mode .header {
+            color: var(--accent-color);
+        }
+
+        /* Subtitle */
+        .subtitle {
+            text-align: center;
+            color: var(--text-color);
+            font-size: 18px;
+            margin-bottom: 20px;
+            letter-spacing: 1.5px;
+            font-weight: 800;
+            animation: slideUp 1.5s ease-in;
+        }
+
+        @keyframes slideUp {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        body.light-mode .subtitle {
+            color: var(--accent-color);
+        }
+
+        /* Buttons */
+        .button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            color: var(--text-color);
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: buttonPulse 3s infinite;
+        }
+
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            transition: 0.5s;
+        }
+
+        .button:hover::before {
+            left: 100%;
+        }
+
+        .button:hover {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--primary-color);
+        }
+
+        @keyframes buttonPulse {
+            0% { box-shadow: 0 0 0 0 var(--primary-color); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 111, 97, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 111, 97, 0); }
+        }
+
+        body.light-mode .button {
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        body.light-mode .button:hover {
+            background: var(--accent-color);
+            color: #fff;
+            box-shadow: 0 0 15px var(--accent-color);
+        }
+
+        .button i {
+            margin-right: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: var(--text-color);
+            font-size: 12px;
+            margin-top: 20px;
+            opacity: 0.8;
+            animation: fadeIn 2s ease-in;
+        }
+
+        body.light-mode .footer {
+            color: var(--accent-color);
+        }
+
+        /* Toggle Mode Button */
+        .toggle-mode {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary-color);
+            border: none;
+            border-radius: 25px;
+            padding: 8px 15px;
+            color: var(--secondary-color);
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 3;
+        }
+
+        .toggle-mode:hover {
+            background: var(--accent-color);
+            color: #fff;
+            transform: rotate(360deg);
+        }
+
+        body.light-mode .toggle-mode {
+            background: var(--accent-color);
+            color: #fff;
+        }
+
+        body.light-mode .toggle-mode:hover {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+        }
+
+        /* Sparkle Effect */
+        .sparkles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            animation: sparkleMove 5s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes sparkleMove {
+            0% { opacity: 0; transform: translate(0, 0); }
+            50% { opacity: 0.8; }
+            100% { opacity: 0; transform: translate(50vw, 50vh); }
+        }
+    </style>
+</head>
+<body>
+    <div class="wave-bg"></div>
+    <div class="hex-overlay"></div>
+    <div class="sparkles" id="sparkles"></div>
+
+    <div class="container">
+        <!--<button class="toggle-mode" onclick="toggleMode()">Light Mode</button>-->
+        <div class="header"><i class="fas fa-user-secret"></i> THARUSHA MD</div>
+        <div class="subtitle">SESSION SELECTOR</div>
+        <a href="/pair" class="button" target="_blank">
+            <i class="fas fa-handshake"></i> PAIR-CODE
+        </a>
+        <a href="/qr" class="button" target="_blank">
+            <i class="fas fa-qrcode"></i> QR-CODE
+        </a>
+        <div class="footer">© 2025 THARUSHA MD. All Rights Reserved.</div>
+    </div>
+
+    <script>
+        // Toggle Mode
+        function toggleMode() {
+            const body = document.body;
+            const toggleButton = document.querySelector('.toggle-mode');
+            body.classList.toggle('light-mode');
+            toggleButton.textContent = body.classList.contains('light-mode') ? 'Dark Mode' : 'Light Mode';
+        }
+
+        // Sparkle Animation
+        const sparklesContainer = document.getElementById('sparkles');
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            sparkle.style.left = `${Math.random() * 100}vw`;
+            sparkle.style.top = `${Math.random() * 100}vh`;
+            sparkle.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            sparklesContainer.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 5000);
+        }
+
+        setInterval(createSparkle, 400);
+    </script>
+</body>
+</html>
