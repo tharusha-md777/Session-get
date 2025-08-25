@@ -4,6 +4,10 @@ const QRCode = require('qrcode');
 const fs = require('fs');
 let router = express.Router();
 const pino = require("pino");
+
+const botRepoUrl = "https://github.com/tharusha-md2008";
+const Wachannellink = "https://whatsapp.com/channel/0029Vb9LTRHInlqISdCfln45";
+
 const {
     default: makeWASocket,
     useMultiFileAuthState,
