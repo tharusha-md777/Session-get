@@ -83,7 +83,7 @@ text: desc,
 contextInfo: {
 externalAdReply: {
 title: "ᴛʜᴀʀᴜꜱʜᴀ-ᴍᴅ",
-thumbnailUrl: "https://i.ibb.co/5gQ13m8p/0ef38c1555c87f01.jpg",
+thumbnailUrl: "https://i.ibb.co/FpKrDJ1/Tharusha-Md.jpg",
 sourceUrl: "https://whatsapp.com/channel/0029Vb9LTRHInlqISdCfln45",
 mediaType: 1,
 renderLargerThumbnail: true
@@ -99,7 +99,7 @@ text: desc,
 contextInfo: {
 externalAdReply: {
 title: "ᴛʜᴀʀᴜꜱʜᴀ-ᴍᴅ",
-thumbnailUrl: "https://i.ibb.co/5gQ13m8p/0ef38c1555c87f01.jpg",
+thumbnailUrl: "https://i.ibb.co/FpKrDJ1/Tharusha-Md.jpg",
 sourceUrl: "https://whatsapp.com/channel/0029Vb9LTRHInlqISdCfln45",
 mediaType: 2,
 renderLargerThumbnail: true,
