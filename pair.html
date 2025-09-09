@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>THARUSHA MD PAIR CODE</title>
+  <title>THARUSHA-MD PAIR CODE</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -18,21 +18,20 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background: linear-gradient(
-        45deg,
-        #ff6b6b, #ff8e53, #f1c40f, #2ecc71, #3498db, #9b59b6,
-        #e74c3c, #1abc9c, #f39c12, #8e44ad, #c0392b, #2980b9
-      );
-      background-size: 4000% 4000%;
-      animation: bgShift 30s ease infinite;
+      background: #000; /* Black background for Matrix effect */
       font-family: 'Poppins', sans-serif;
       overflow: hidden;
+      position: relative;
     }
 
-    @keyframes bgShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    /* Matrix Animation Canvas */
+    #matrix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* Behind all content */
     }
 
     .container {
@@ -82,7 +81,7 @@
     }
 
     .centered-text {
-      color: #fff;
+      color: #0f0; /* Matrix green text */
       font-weight: 600;
       font-size: 1.5rem;
       margin-bottom: 20px;
@@ -125,8 +124,9 @@
 
     .input-container input:focus {
       outline: none;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 15px rgba(0, 255, 0, 0.5); /* Matrix green glow */
       background: rgba(255, 255, 255, 0.2);
+      color:#0f0;
     }
 
     .input-container input:focus::placeholder {
@@ -137,11 +137,11 @@
       padding: 12px;
       background: linear-gradient(
         45deg,
-        #ff6b6b, #ff8e53, #f1c40f, #2ecc71, #3498db, #9b59b6
-      );
-      background-size: 400% 400%;
-      animation: bgShift 10s ease infinite;
-      color: #fff;
+        #0f0, #0a0, #0f0, #0a0
+      ); /* Matrix green gradient */
+      background-size: 200% 200%;
+      animation: glowPulse 2s ease infinite;
+      color: #000;
       font-weight: 700;
       text-transform: uppercase;
       border: none;
@@ -150,6 +150,13 @@
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    }
+
+    @keyframes glowPulse {
+      0% { background-position: 0% 50%; box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); }
+      50% { background-position: 100% 50%; box-shadow: 0 0 20px rgba(0, 255, 0, 0.8); }
+      100% { background-position: 0% 50%; box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); }
     }
 
     .input-container button::before {
@@ -159,7 +166,7 @@
       left: 50%;
       width: 0;
       height: 0;
-      background: rgba(255, 255, 255, 0.3);
+      background: rgba(0, 255, 0, 0.3); /* Matrix green ripple */
       border-radius: 50%;
       transform: translate(-50%, -50%);
       transition: width 0.6s ease, height 0.6s ease;
@@ -172,8 +179,8 @@
 
     .input-container button:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-      color: #fff;
+      box-shadow: 0 0 25px rgba(0, 255, 0, 0.8); /* Enhanced glow */
+      color: #000;
     }
 
     @media (max-width: 500px) {
@@ -200,17 +207,17 @@
       height: 80px;
       margin-bottom: 20px;
       animation: pulse 2s ease-in-out infinite;
-      border: 3px solid rgba(255, 255, 255, 0.3);
+      border: 3px solid rgba(0, 255, 0, 0.3); /* Matrix green border */
     }
 
     @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
-      50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
-      100% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
+      0% { transform: scale(1); box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); }
+      50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(0, 255, 0, 0.5); }
+      100% { transform: scale(1); box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); }
     }
 
     #waiting-message {
-      color: #fff;
+      color: #0f0; /* Matrix green */
       font-weight: 600;
       display: flex;
       align-items: center;
@@ -223,7 +230,7 @@
       content: '';
       width: 20px;
       height: 20px;
-      border: 3px solid #fff;
+      border: 3px solid #0f0; /* Matrix green spinner */
       border-top: 3px solid transparent;
       border-radius: 50%;
       animation: spin 1s linear infinite;
@@ -236,6 +243,7 @@
   </style>
 </head>
 <body>
+  <canvas id="matrix"></canvas>
   <div class="container">
     <div class="box" id="box">
       <div id="text">
@@ -253,6 +261,49 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
   <script>
+    // Matrix Animation
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%';
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = [];
+
+    for (let x = 0; x < columns; x++) {
+      drops[x] = 1;
+    }
+
+    function draw() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#0f0'; // Matrix green
+      ctx.font = fontSize + 'px monospace';
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars.charAt(Math.floor(Math.random() * chars.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 33);
+
+    // Resize canvas on window resize
+    window.addEventListener('resize', () => {
+      canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth;
+    });
+
+    // Existing JavaScript for form submission
     const pair = document.getElementById("pair");
     const submitBtn = document.getElementById("submit");
     const numberInput = document.getElementById("number");
@@ -263,7 +314,7 @@
       const text = copyElement.innerText.replace('CODE: ', '');
       await navigator.clipboard.writeText(text);
       copyElement.innerText = "COPIED!";
-      copyElement.style.color = "#00ff00";
+      copyElement.style.color = "#0f0"; // Matrix green
       copyElement.style.fontWeight = "bold";
       setTimeout(() => {
         copyElement.innerText = `CODE: ${text}`;
@@ -277,20 +328,20 @@
       waitingMessage.style.display = 'none';
 
       if (!numberInput.value) {
-        pair.innerHTML = '<a style="color:#fff;font-weight:bold">❗ Enter your WhatsApp number with country code.</a><br><br>';
+        pair.innerHTML = '<a style="color:#0f0;font-weight:bold">❗ Enter your WhatsApp number with country code.</a><br><br>';
         return;
       }
 
       const cleanedNumber = numberInput.value.replace(/[^0-9]/g, "");
       if (cleanedNumber.length < 11) {
-        pair.innerHTML = '<a style="color:#fff;font-weight:bold">❌ Invalid number format ❌</a><br><br>';
+        pair.innerHTML = '<a style="color:#0f0;font-weight:bold">❌ Invalid number format ❌</a><br><br>';
         return;
       }
 
       const formattedNumber = '+' + cleanedNumber.replace(/(\d{3})(\d{5})(\d+)/, '$1 $2 $3');
       numberInput.type = "text";
       numberInput.value = formattedNumber;
-      numberInput.style.color = "#fff";
+      numberInput.style.color = "#0f0"; // Matrix green
       numberInput.style.fontSize = "18px";
 
       waitingMessage.style.display = 'flex';
@@ -300,13 +351,13 @@
         const code = data.code || "Service Unavailable";
         pair.innerHTML = `
           <font id="copy" onclick="copyCode()" style="color:#ff0000;font-weight:bold;cursor:pointer" size="5">
-            CODE: <span style="color:#fff">${code}</span>
+            CODE: <span style="color:#0f0">${code}</span>
           </font><br><br>`;
       } catch (error) {
         waitingMessage.style.display = 'none';
-        pair.innerHTML = '<a style="color:#fff;font-weight:bold">❌ Error fetching code ❌</a><br><br>';
+        pair.innerHTML = '<a style="color:#0f0;font-weight:bold">❌ Error fetching code ❌</a><br><br>';
       }
     });
   </script>
 </body>
-</html>
+  </html>
